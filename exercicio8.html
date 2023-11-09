@@ -1,0 +1,52 @@
+<!-- THIS FILE IS IN HTML BECAUSE THIS WAS A SIMPLE SOLUTION TO HAVE THE USER SELECT THE UNIT HE WANTS TO CONVERT,
+     WHEREAS IN OTHER CODES IN THIS REPOSITORY IS JUST A SIMPLE CALCULATION WITH A SINGLE USER INPUT-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Temperature Conversion Calculator</title>
+  </head>
+  <body>
+    <h1>Temperature Conversion Calculator</h1>
+    <p>Enter a temperature in Fahrenheit or Celsius:</p>
+    <input type="text" id="temperatureInput" placeholder="Enter temperature" />
+    <select id="unitSelect">
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="celsius">Celsius</option>
+    </select>
+    <button onclick="convertTemperature()">Convert</button>
+    <p id="result"></p>
+
+    <script>
+      function convertTemperature() {
+        const temperatureInput =
+          document.getElementById("temperatureInput").value;
+        const unitSelect = document.getElementById("unitSelect").value;
+        const resultElement = document.getElementById("result");
+
+        if (unitSelect === "fahrenheit") {
+          const fahrenheit = parseFloat(temperatureInput);
+          if (!isNaN(fahrenheit)) {
+            const celsius = ((fahrenheit - 32) * 5) / 9;
+            resultElement.textContent = `${fahrenheit} Fahrenheit is ${celsius.toFixed(
+              2
+            )} Celsius.`;
+          } else {
+            resultElement.textContent =
+              "Please enter a valid temperature in Fahrenheit.";
+          }
+        } else if (unitSelect === "celsius") {
+          const celsius = parseFloat(temperatureInput);
+          if (!isNaN(celsius)) {
+            const fahrenheit = (celsius * 9) / 5 + 32;
+            resultElement.textContent = `${celsius} Celsius is ${fahrenheit.toFixed(
+              2
+            )} Fahrenheit.`;
+          } else {
+            resultElement.textContent =
+              "Please enter a valid temperature in Celsius.";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
